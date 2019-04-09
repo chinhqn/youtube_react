@@ -9,6 +9,13 @@ import Footer from './components/footer';
 
 const API_KEY = 'AIzaSyB6_5qfkLODfrm1g64DVEfPX7-3-rFfGjs';
 
+const styles =  {
+    stickToBottom: {
+        width: '100%',
+        position: 'fixed',
+        bottom: 0,
+    },
+}
 class App extends Component {
     constructor(props) {
         super(props);
@@ -24,7 +31,7 @@ class App extends Component {
             <div>
                 <Header />
                 <Main />
-                <Footer />
+                <Footer style={styles.stickToBottom}/>
             </div>
         );
     }

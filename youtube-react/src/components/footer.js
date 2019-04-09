@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Paper, Typography } from '@material-ui/core';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import RestoreIcon from '@material-ui/icons/Restore';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
 class Footer extends Component {
     constructor(props) {
         super(props);
@@ -13,20 +14,17 @@ class Footer extends Component {
         this.setState({ value });
     };
     render() {
+        const value = this.state;
         return (
-            <Paper className="footer" elevation={1}>
-                <Tabs
-                    value={this.state.value}
-                    onChange={this.handleChange}
-                    indicatorColor="primary"
-                    textColor="primary"
-                    centered
-                    >
-                    <Tab label="Item One" />
-                    <Tab label="Item Two" />
-                    <Tab label="Item Three" />
-                </Tabs>
-            </Paper>
+            <BottomNavigation
+                value={value}
+                onChange={this.handleChange}
+                showLabels
+            >
+                <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
+                <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+                <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+            </BottomNavigation>
         )
     }
 }

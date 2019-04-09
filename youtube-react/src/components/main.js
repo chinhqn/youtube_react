@@ -20,20 +20,19 @@ class Main extends Component {
     }
     render = () => {
         return (
-            <Grid container spacing={24} >
-                <Grid item xs={12}>
-                    <SearchBar styles={styles} />
+            <div>
+                <Grid container spacing={24}>
+                    <Grid item xs={12}>
+                        <SearchBar styles={styles} />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <VideoDetail styles={styles} />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <VideoListItem styles={styles} />
+                    </Grid>
                 </Grid>
-                <Grid item xs={6}>
-                    <VideoDetail styles={styles} />
-                </Grid>
-                <Grid item xs={6}>
-                    <VideoListItem styles={styles} />
-                </Grid>
-                <Grid item xs={12}>
-                    <VideoList styles={styles} />
-                </Grid>
-            </Grid>
+            </div>
         );
     }
 }
