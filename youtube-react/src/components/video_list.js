@@ -34,7 +34,7 @@ class VideoList extends Component {
         const list = videos.map((value, items) => {
             let imgUrl = value.snippet.thumbnails.default.url;
             let title = value.snippet.title;
-            let date = value.snippet.publishedAt;
+            let date = new Date(value.snippet.publishedAt).toLocaleString();
             return (
                 <ListItem key={items} alignItems="flex-start">
                     <img src={imgUrl} />
