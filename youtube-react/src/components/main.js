@@ -7,7 +7,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import Paper from '@material-ui/core/Paper';
-
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 const styles = theme => ({
     root: {
         flexGrow: 1,
@@ -71,13 +73,41 @@ class Main extends React.Component {
     render() {
         const { classes } = this.props;
         const { spacing } = this.state;
-
+        var settings = {
+            dots: false,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            cssEase: "linear"
+        };
         return (
             <div className={classes.root}>
                 <Grid container spacing={24} className={classes.content}>
                     <Grid item xs={12}>
                         <Paper className={classes.paper}>
-                            <img className={classes.img} src="http://loremflickr.com/300/200" />
+                            <Slider {...settings}>
+                                <div>
+                                    <img className={classes.img} src="http://loremflickr.com/300/200" />
+                                </div>
+                                <div>
+                                    <img className={classes.img} src="http://loremflickr.com/300/100" />
+                                </div>
+                                <div>
+                                    <img className={classes.img} src="http://loremflickr.com/300/150" />
+                                </div>
+                                <div>
+                                    <img className={classes.img} src="http://loremflickr.com/300/300" />
+                                </div>
+                                <div>
+                                    <img className={classes.img} src="http://loremflickr.com/300/400" />
+                                </div>
+                                <div>
+                                    <img className={classes.img} src="http://loremflickr.com/300/35000" />
+                                </div>
+                            </Slider>
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6}>
