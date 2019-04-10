@@ -8,28 +8,23 @@ import Header from './components/header';
 import Footer from './components/footer';
 const API_KEY = 'AIzaSyB6_5qfkLODfrm1g64DVEfPX7-3-rFfGjs';
 
-const styles =  {
-    stickToBottom: {
-        width: '100%',
-        position: 'fixed',
-        bottom: 0,
-    },
-}
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            videos: [],
+            videos: []
         };
-        YTSearch({key: API_KEY, term: 'surfboards'}, function(videos){
+        YTSearch({key: API_KEY, term: 'surfboards'}, (videos) => {
             this.setState({videos})
         });
     }
     render() {
+        const { videos } = this.state;
+        console.log(videos)
         return (
             <div>
                 <Header />
-                <Main />
+                <Main videos={videos}/>
                 <Footer/>
             </div>
         );
