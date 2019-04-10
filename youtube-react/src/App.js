@@ -6,7 +6,6 @@ import YTSearch from 'youtube-api-search';
 import Main from './components/main';
 import Header from './components/header';
 import Footer from './components/footer';
-
 const API_KEY = 'AIzaSyB6_5qfkLODfrm1g64DVEfPX7-3-rFfGjs';
 
 const styles =  {
@@ -31,7 +30,7 @@ class App extends Component {
             <div>
                 <Header />
                 <Main />
-                <Footer style={styles.stickToBottom}/>
+                <Footer/>
             </div>
         );
     }
