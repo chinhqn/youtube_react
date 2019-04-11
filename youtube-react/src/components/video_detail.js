@@ -41,8 +41,9 @@ class VideoDetail extends Component {
     render() {
         const { classes } = this.props;
         const {video} = this.props;
+        console.log(video)
         if (!video) {
-            return "Loading ..."
+            return "<div>Loading ...</div>";
         }
         const videoId = video.id.videoId;
         const url = `https://www.youtube.com/embed/${videoId}`;
@@ -67,7 +68,7 @@ class VideoDetail extends Component {
                     Learn More
                     </Button>
                 </CardActions>
-                </Card>
+            </Card>
         )
     }
 }

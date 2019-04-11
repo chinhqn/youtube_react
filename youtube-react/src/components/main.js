@@ -4,7 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import VideoDetail from './video_detail';
 import VideoList from './video_list';
-import VideoListItem from './video_list_item';
+import YTSearch from 'youtube-api-search';
+const API_KEY = 'AIzaSyB6_5qfkLODfrm1g64DVEfPX7-3-rFfGjs';
 const styles = theme => ({
     root: {
         flexGrow: 1,
@@ -32,36 +33,38 @@ class Main extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            videos: []
-        }
-    }
-
-    componentWillMount = () => {
-        console.log(this.props)
-    }
-
-    componentDidMount = () => {
-        console.log(this.props)
-    }
-
-    handleChange = key => (event, value) => {
-        this.setState({
-            [key]: value,
+            videos: [],
+            selectVideo: null
+        };
+        YTSearch({key: API_KEY, term: 'surfboards'}, (videos) => {
+            console.log(videos)
+            this.setState({
+                videos: videos,
+                selectVideo: videos[0]
+            })
         });
-    };
+    }
 
+    selectVideo = (video) => {
+        this.setState({
+            selectVideo : video
+        })
+    }
     render() {
-        const { classes, videos } = this.props;
+        const { classes } = this.props;
+        const { videos, selectVideo } = this.state;
         return (
             <div className={classes.root}>
                 <Grid container spacing={24} className={classes.content}>
                     <Grid item xs={12}>
-                        <VideoDetail video={videos[0]} />
+                        <VideoDetail video={selectVideo} />
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                        <VideoList videos={videos} />
+                        <VideoList 
+                            videos={videos}
+                            onVideoSelect={this.selectVideo}
+                        />
                     </Grid>
-                    <VideoListItem />
                 </Grid>
             </div>
         );

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+import VideoListItem from "./video_list_item";
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+
 const styles = theme => ({
     paper: {
         height: 140,
@@ -23,28 +24,31 @@ class VideoList extends Component {
     constructor(props) {
         super(props);
             this.state = {
+                videoChange: ''
         };
     }
     
+    onVideoSelect = (param) => {
+        console.log(param, 'param')
+        this.setState({
+            videoChange: param,
+        })
+        this.props.onVideoSelect(param)
+    }
 
     render(){
         const { classes } = this.props;
-        const { videos } = this.props;
-        
-        const list = videos.map((value, items) => {
-            let imgUrl = value.snippet.thumbnails.default.url;
-            let title = value.snippet.title;
-            let date = new Date(value.snippet.publishedAt).toLocaleString();
+        const { videos, onVideoSelect } = this.props;
+
+        console.log(onVideoSelect, 'video_list')
+        const VideoItem = videos.map((video) => {
             return (
-                <ListItem key={items} alignItems="flex-start">
-                    <img src={imgUrl} />
-                    <ListItemText primary={title} secondary={date} />
-                </ListItem>
+                <VideoListItem key={video.etag} video={video} onVideoSelectChange={this.onVideoSelect} />
             )
         })
         return (
             <List className={classes.root}> 
-                {list}
+                {VideoItem}
             </List>
         );
     }
