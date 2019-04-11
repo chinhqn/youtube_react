@@ -20,15 +20,21 @@ class VideoListItem extends Component {
         this.state = {
             video : [],
             onVideoSelect: null
-        }
+        };
+        this.myRef = React.createRef();
     }
     componentWillMount = () => {
         this.setState({
             video : this.props.video,
         })
     }
+    componentDidMount() {
+        console.log(this.myRef.current);
+        // this.myRef.scrollTo(0, 0);
+    }
     onVideoSelect = () => {
-        this.props.onVideoSelectChange(this.state.video)
+        this.props.onVideoSelectChange(this.state.video);
+        window.scrollTo(0,0);
     }
     render() {
         const {classes, video} = this.props;
@@ -36,7 +42,7 @@ class VideoListItem extends Component {
         let title = video.snippet.title;
         let date = new Date(video.snippet.publishedAt).toLocaleString();
         return(
-                <ListItem  onClick={this.onVideoSelect} alignItems="flex-start">
+                <ListItem  onClick={this.onVideoSelect} ref={this.myRef} alignItems="flex-start">
                     <img src={imgUrl} />
                     <ListItemText primary={title} secondary={date} />
                 </ListItem>

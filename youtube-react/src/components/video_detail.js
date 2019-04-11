@@ -41,7 +41,6 @@ class VideoDetail extends Component {
     render() {
         const { classes } = this.props;
         const {video} = this.props;
-        console.log(video)
         if (!video) {
             return "<div>Loading ...</div>";
         }

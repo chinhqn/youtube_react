@@ -37,7 +37,6 @@ class Main extends React.Component {
             selectVideo: null
         };
         YTSearch({key: API_KEY, term: 'surfboards'}, (videos) => {
-            console.log(videos)
             this.setState({
                 videos: videos,
                 selectVideo: videos[0]

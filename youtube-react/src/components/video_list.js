@@ -29,7 +29,6 @@ class VideoList extends Component {
     }
     
     onVideoSelect = (param) => {
-        console.log(param, 'param')
         this.setState({
             videoChange: param,
         })
@@ -39,8 +38,6 @@ class VideoList extends Component {
     render(){
         const { classes } = this.props;
         const { videos, onVideoSelect } = this.props;
-
-        console.log(onVideoSelect, 'video_list')
         const VideoItem = videos.map((video) => {
             return (
                 <VideoListItem key={video.etag} video={video} onVideoSelectChange={this.onVideoSelect} />
