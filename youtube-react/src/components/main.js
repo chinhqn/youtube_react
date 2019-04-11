@@ -51,26 +51,17 @@ class Main extends React.Component {
     };
 
     render() {
-        const { classes } = this.props;
-        const { videos } = this.props;
+        const { classes, videos } = this.props;
         return (
             <div className={classes.root}>
                 <Grid container spacing={24} className={classes.content}>
                     <Grid item xs={12}>
-                        <VideoDetail />
+                        <VideoDetail video={videos[0]} />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <VideoList videos={videos} />
                     </Grid>
                     <VideoListItem />
-                    {/* {[0, 1, 2, 3].map(value => {
-                        return (
-                            <Grid key={value} item xs={6} sm={3}>
-                                <VideoListItem />
-                            </Grid>
-                        )   
-                    })} */}
-                    
                 </Grid>
             </div>
         );

@@ -20,7 +20,6 @@ class App extends Component {
     }
     render() {
         const { videos } = this.state;
-        console.log(videos)
         return (
             <div>
                 <Header />

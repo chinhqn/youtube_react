@@ -5,13 +5,19 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 const styles = theme => ({
     root: {
         flexGrow: 1,
     },
     paper: {
-        height: 140,
+        height: 'auto',
         padding: theme.spacing.unit * 1,
         textAlign: 'center',
         color: theme.palette.text.secondary,
@@ -28,46 +34,40 @@ class VideoDetail extends Component {
 
     handleChange = key => (event, value) => {
         this.setState({
-        [key]: value,
+            [key]: value,
         });
     };
 
     render() {
         const { classes } = this.props;
-        const { spacing } = this.state;
-        var settings = {
-            dots: false,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            autoplay: true,
-            autoplaySpeed: 2000,
-            cssEase: "linear"
-        };
+        const {video} = this.props;
+        if (!video) {
+            return "Loading ..."
+        }
+        const videoId = video.id.videoId;
+        const url = `https://www.youtube.com/embed/${videoId}`;
         return (
-            <Paper className={classes.paper}>
-                <Slider {...settings}>
-                    <div>
-                        <img className={classes.img} src="http://loremflickr.com/300/200" />
-                    </div>
-                    <div>
-                        <img className={classes.img} src="http://loremflickr.com/300/100" />
-                    </div>
-                    <div>
-                        <img className={classes.img} src="http://loremflickr.com/300/150" />
-                    </div>
-                    <div>
-                        <img className={classes.img} src="http://loremflickr.com/300/300" />
-                    </div>
-                    <div>
-                        <img className={classes.img} src="http://loremflickr.com/300/400" />
-                    </div>
-                    <div>
-                        <img className={classes.img} src="http://loremflickr.com/300/35000" />
-                    </div>
-                </Slider>
-            </Paper>
+            <Card className={classes.card}>
+                <CardActionArea>
+                    <iframe width="100%" height="auto" src={url} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            {video.snippet.title}
+                        </Typography>
+                        <Typography component="p">
+                            {video.snippet.description}
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+                <CardActions>
+                    <Button size="small" color="primary">
+                    Share
+                    </Button>
+                    <Button size="small" color="primary">
+                    Learn More
+                    </Button>
+                </CardActions>
+                </Card>
         )
     }
 }
