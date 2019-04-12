@@ -16,11 +16,16 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
 const styles = theme => ({
     root: {
         width: '100%',
         backgroundColor: '#2196f3 !important'
+    },
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap',
     },
     grow: {
         flexGrow: 1,
@@ -35,6 +40,9 @@ const styles = theme => ({
         display: 'block',
         },
     },
+    form: {
+
+    },
     search: {
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
@@ -42,22 +50,35 @@ const styles = theme => ({
         '&:hover': {
         backgroundColor: fade(theme.palette.common.white, 0.25),
         },
-        marginRight: theme.spacing.unit * 2,
+        // marginRight: theme.spacing.unit * 2,
         marginLeft: 0,
         width: '100%',
         [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing.unit * 3,
+        // marginLeft: theme.spacing.unit * 3,
         width: 'auto',
         },
     },
-    searchIcon: {
-        width: theme.spacing.unit * 9,
+    // searchIcon: {
+    //     // width: theme.spacing.unit * 9,
+    //     height: '100%',
+    //     position: 'absolute',
+    //     pointerEvents: 'none',
+    //     display: 'flex',
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+
+    // },
+    menuButtonSubmit: {
         height: '100%',
         position: 'absolute',
         pointerEvents: 'none',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        top: 0,
+        right: 50,
+        // marginLeft: -12,
+        // marginRight: 20,
     },
     inputRoot: {
         color: 'inherit',
@@ -67,7 +88,7 @@ const styles = theme => ({
         paddingTop: theme.spacing.unit,
         paddingRight: theme.spacing.unit,
         paddingBottom: theme.spacing.unit,
-        paddingLeft: theme.spacing.unit * 10,
+        paddingLeft: theme.spacing.unit * 1,
         transition: theme.transitions.create('width'),
         width: '100%',
         [theme.breakpoints.up('md')]: {
@@ -117,11 +138,14 @@ class Header extends React.Component {
     };
 
     handleChange =  event => {
+        console.log(event.target.value);
         this.setState({
             term: event.target.value
         })
+    }
+    handleSubmit = (event) => {
         this.props.onSearchTermChange(this.state.term)
-
+        event.preventDefault();
     }
     render() {
         const { anchorEl, mobileMoreAnchorEl, term } = this.state;
@@ -177,59 +201,65 @@ class Header extends React.Component {
         );
 
         return (
-            <div className={classes.root}>
-                <AppBar position="static">
-                <Toolbar>
-                    <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
-                    <MenuIcon />
-                    </IconButton>
-                    <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-                    Youtube
-                    </Typography>
-                    <div className={classes.search}>
-                    <div className={classes.searchIcon}>
-                        <SearchIcon />
-                    </div>
-                    <InputBase
-                        placeholder="Search…"
-                        onChange={this.handleChange}
-                        classes={{
-                        root: classes.inputRoot,
-                        input: classes.inputInput,
-                        }}
-                    />
-                    </div>
-                    <div className={classes.grow} />
-                    <div className={classes.sectionDesktop}>
-                    <IconButton color="inherit">
-                        <Badge badgeContent={4} color="secondary">
-                        <MailIcon />
-                        </Badge>
-                    </IconButton>
-                    <IconButton color="inherit">
-                        <Badge badgeContent={17} color="secondary">
-                        <NotificationsIcon />
-                        </Badge>
-                    </IconButton>
-                    <IconButton
-                        aria-owns={isMenuOpen ? 'material-appbar' : undefined}
-                        aria-haspopup="true"
-                        onClick={this.handleProfileMenuOpen}
-                        color="inherit"
-                    >
-                        <AccountCircle />
-                    </IconButton>
-                    </div>
-                    <div className={classes.sectionMobile}>
-                    <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
-                        <MoreIcon />
-                    </IconButton>
-                    </div>
-                </Toolbar>
-                </AppBar>
-                {renderMenu}
-                {renderMobileMenu}
-            </div>
+                <div className={classes.root}>
+                    <form onSubmit={this.handleSubmit} className={classes.container} noValidate autoComplete="on">
+                        <AppBar position="static">
+                            <Toolbar>
+                                <IconButton type="submit" className={classes.menuButton} color="inherit" aria-label="Open drawer">
+                                    <SearchIcon />
+                                </IconButton>
+                                <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+                                    Youtube
+                                </Typography>
+                                    <div className={classes.search} onSubmit={this.handleSubmit}>
+                                        <InputBase
+                                            // className={classes.search}
+                                            placeholder="Search…"
+                                            onChange={this.handleChange}
+                                            classes={
+                                                {
+                                                    root: classes.inputRoot,
+                                                    input: classes.inputInput,
+                                                }
+                                            }
+                                        />
+                                    </div>
+                                    {/* <IconButton type="submit" className={classes.menuButton} color="inherit" aria-label="Open drawer"> */}
+                                        {/* <SearchIcon /> */}
+                                    {/* </IconButton> */}
+                                {/* </form> */}
+                                <div className={classes.grow} />
+                                <div className={classes.sectionDesktop}>
+                                    <IconButton color="inherit">
+                                        <Badge badgeContent={4} color="secondary">
+                                            <MailIcon />
+                                        </Badge>
+                                    </IconButton>
+                                    <IconButton color="inherit">
+                                        <Badge badgeContent={17} color="secondary">
+                                            <NotificationsIcon />
+                                        </Badge>
+                                    </IconButton>
+                                    <IconButton
+                                        aria-owns={isMenuOpen ? 'material-appbar' : undefined}
+                                        aria-haspopup="true"
+                                        onClick={this.handleProfileMenuOpen}
+                                        color="inherit"
+                                    >
+                                        <AccountCircle />
+                                    </IconButton>
+                                </div>
+                                <div className={classes.sectionMobile}>
+                                    <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
+                                        <MoreIcon />
+                                    </IconButton>
+                                </div>
+                            </Toolbar>
+                        </AppBar>
+                        {renderMenu}
+                        {renderMobileMenu}
+                    </form>
+                </div>
         );
     }
 }
