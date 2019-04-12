@@ -31,7 +31,7 @@ const styles = theme => ({
         flexGrow: 1,
     },
     menuButton: {
-        marginLeft: -12,
+        marginLeft: 0,
         marginRight: 20,
     },
     title: {
@@ -39,9 +39,6 @@ const styles = theme => ({
         [theme.breakpoints.up('sm')]: {
         display: 'block',
         },
-    },
-    form: {
-
     },
     search: {
         position: 'relative',
@@ -58,16 +55,6 @@ const styles = theme => ({
         width: 'auto',
         },
     },
-    // searchIcon: {
-    //     // width: theme.spacing.unit * 9,
-    //     height: '100%',
-    //     position: 'absolute',
-    //     pointerEvents: 'none',
-    //     display: 'flex',
-    //     alignItems: 'center',
-    //     justifyContent: 'center',
-
-    // },
     menuButtonSubmit: {
         height: '100%',
         position: 'absolute',
@@ -77,8 +64,6 @@ const styles = theme => ({
         justifyContent: 'center',
         top: 0,
         right: 50,
-        // marginLeft: -12,
-        // marginRight: 20,
     },
     inputRoot: {
         color: 'inherit',
@@ -119,7 +104,6 @@ class Header extends React.Component {
         }
     }
 
-
     handleProfileMenuOpen = event => {
         this.setState({ anchorEl: event.currentTarget });
     };
@@ -155,49 +139,49 @@ class Header extends React.Component {
         const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
         const renderMenu = (
-        <Menu
-            anchorEl={anchorEl}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-            open={isMenuOpen}
-            onClose={this.handleMenuClose}
-        >
-            <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
-        </Menu>
+            <Menu
+                anchorEl={anchorEl}
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                open={isMenuOpen}
+                onClose={this.handleMenuClose}
+            >
+                <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
+                <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
+            </Menu>
         );
 
         const renderMobileMenu = (
-        <Menu
-            anchorEl={mobileMoreAnchorEl}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-            open={isMobileMenuOpen}
-            onClose={this.handleMenuClose}
-        >
-            <MenuItem onClick={this.handleMobileMenuClose}>
-            <IconButton color="inherit">
-                <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-                </Badge>
-            </IconButton>
-            <p>Messages</p>
-            </MenuItem>
-            <MenuItem onClick={this.handleMobileMenuClose}>
-            <IconButton color="inherit">
-                <Badge badgeContent={11} color="secondary">
-                <NotificationsIcon />
-                </Badge>
-            </IconButton>
-            <p>Notifications</p>
-            </MenuItem>
-            <MenuItem onClick={this.handleProfileMenuOpen}>
-            <IconButton color="inherit">
-                <AccountCircle />
-            </IconButton>
-            <p>Profile</p>
-            </MenuItem>
-        </Menu>
+            <Menu
+                anchorEl={mobileMoreAnchorEl}
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                open={isMobileMenuOpen}
+                onClose={this.handleMenuClose}
+            >
+                <MenuItem onClick={this.handleMobileMenuClose}>
+                    <IconButton color="inherit">
+                        <Badge badgeContent={4} color="secondary">
+                        <MailIcon />
+                            </Badge>
+                    </IconButton>
+                    <p>Messages</p>
+                    </MenuItem>
+                    <MenuItem onClick={this.handleMobileMenuClose}>
+                        <IconButton color="inherit">
+                            <Badge badgeContent={11} color="secondary">
+                            <NotificationsIcon />
+                            </Badge>
+                        </IconButton>
+                        <p>Notifications</p>
+                    </MenuItem>
+                    <MenuItem onClick={this.handleProfileMenuOpen}>
+                        <IconButton color="inherit">
+                            <AccountCircle />
+                        </IconButton>
+                        <p>Profile</p>
+                </MenuItem>
+            </Menu>
         );
 
         return (
@@ -206,7 +190,7 @@ class Header extends React.Component {
                         <AppBar position="static">
                             <Toolbar>
                                 <IconButton type="submit" className={classes.menuButton} color="inherit" aria-label="Open drawer">
-                                    <SearchIcon />
+                                    <MenuIcon />
                                 </IconButton>
                                 <Typography className={classes.title} variant="h6" color="inherit" noWrap>
                                     Youtube
@@ -224,10 +208,9 @@ class Header extends React.Component {
                                             }
                                         />
                                     </div>
-                                    {/* <IconButton type="submit" className={classes.menuButton} color="inherit" aria-label="Open drawer"> */}
-                                        {/* <SearchIcon /> */}
-                                    {/* </IconButton> */}
-                                {/* </form> */}
+                                    <IconButton type="submit" className={classes.menuButton} color="inherit" aria-label="Open drawer">
+                                    <SearchIcon />
+                                </IconButton>
                                 <div className={classes.grow} />
                                 <div className={classes.sectionDesktop}>
                                     <IconButton color="inherit">
