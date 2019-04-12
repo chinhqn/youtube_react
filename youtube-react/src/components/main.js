@@ -1,3 +1,4 @@
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -5,7 +6,9 @@ import Grid from '@material-ui/core/Grid';
 import VideoDetail from './video_detail';
 import VideoList from './video_list';
 import YTSearch from 'youtube-api-search';
+import Header from './header';
 const API_KEY = 'AIzaSyB6_5qfkLODfrm1g64DVEfPX7-3-rFfGjs';
+
 const styles = theme => ({
     root: {
         flexGrow: 1,
@@ -36,14 +39,17 @@ class Main extends React.Component {
             videos: [],
             selectVideo: null
         };
-        YTSearch({key: API_KEY, term: 'surfboards'}, (videos) => {
+        this.videoSeach('sontung');
+    }
+
+    videoSeach = (term) => {
+        YTSearch({key: API_KEY, term: term}, (videos) => {
             this.setState({
                 videos: videos,
                 selectVideo: videos[0]
             })
         });
     }
-
     selectVideo = (video) => {
         this.setState({
             selectVideo : video
@@ -54,6 +60,7 @@ class Main extends React.Component {
         const { videos, selectVideo } = this.state;
         return (
             <div className={classes.root}>
+                <Header onSearchTermChange={(term) => this.videoSeach(term)} />
                 <Grid container spacing={24} className={classes.content}>
                     <Grid item xs={12}>
                         <VideoDetail video={selectVideo} />

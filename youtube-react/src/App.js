@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
 import './App.css';
 import Main from './components/main';
-import Header from './components/header';
 import Footer from './components/footer';
 
 class App extends Component {
-    
+    constructor(props) {
+        super(props);
+        this.state = {
+
+        }
+    }
+    onSearchTerm = (data) => {
+        console.log(data);
+    }
+
     render() {
         return (
             <div>
-                <Header />
-                <Main/>
+                <Main onSearchTerm={this.onSearchTerm} />
                 <Footer/>
             </div>
         );

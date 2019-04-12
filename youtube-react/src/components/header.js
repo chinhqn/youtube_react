@@ -89,10 +89,15 @@ const styles = theme => ({
 });
 
 class Header extends React.Component {
-    state = {
-        anchorEl: null,
-        mobileMoreAnchorEl: null,
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            anchorEl: null,
+            mobileMoreAnchorEl: null,
+            term: ''
+        }
+    }
+
 
     handleProfileMenuOpen = event => {
         this.setState({ anchorEl: event.currentTarget });
@@ -111,8 +116,16 @@ class Header extends React.Component {
         this.setState({ mobileMoreAnchorEl: null });
     };
 
+    handleChange =  event => {
+        this.setState({
+            term: event.target.value
+        })
+        this.props.onSearchTermChange(this.state.term)
+
+    }
     render() {
-        const { anchorEl, mobileMoreAnchorEl } = this.state;
+        const { anchorEl, mobileMoreAnchorEl, term } = this.state;
+        console.log(term);
         const { classes } = this.props;
         const isMenuOpen = Boolean(anchorEl);
         const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -179,6 +192,7 @@ class Header extends React.Component {
                     </div>
                     <InputBase
                         placeholder="Search…"
+                        onChange={this.handleChange}
                         classes={{
                         root: classes.inputRoot,
                         input: classes.inputInput,
