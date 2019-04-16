@@ -12,6 +12,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Grid from '@material-ui/core/Grid';
 const styles = theme => ({
     root: {
         flexGrow: 1,
@@ -25,6 +27,9 @@ const styles = theme => ({
     img: {
         width: 280,
         height: 135,
+    },
+    progress: {
+        margin: theme.spacing.unit * 2,
     }
 });
 class VideoDetail extends Component {
@@ -42,7 +47,19 @@ class VideoDetail extends Component {
         const { classes } = this.props;
         const {video} = this.props;
         if (!video) {
-            return "<div>Loading ...</div>";
+            return (
+                <Grid
+                    container
+                    spacing={0}
+                    align="center"
+                    justify="center"
+                    style={{ backgroundColor: '#263238' }}
+                    >
+                    <Grid item >
+                        <CircularProgress className={classes.progress} />
+                    </Grid>
+                </Grid>
+            );
         }
         const videoId = video.id.videoId;
         const url = `https://www.youtube.com/embed/${videoId}`;
