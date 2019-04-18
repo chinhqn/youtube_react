@@ -32,12 +32,18 @@ class VideoListItem extends Component {
         console.log(this.myRef.current);
         // this.myRef.scrollTo(0, 0);
     }
+    componentWillReceiveProps = () => {
+
+    }
     onVideoSelect = () => {
         this.props.onVideoSelectChange(this.state.video);
         window.scrollTo(0,0);
     }
+    // onPlayerReady = (event) => {
+    //     ytPlayer.playVideo();       
+    // }
     render() {
-        const {classes, video} = this.props;
+        const { video } = this.props;
         let imgUrl = video.snippet.thumbnails.default.url;
         let title = video.snippet.title;
         let date = new Date(video.snippet.publishedAt).toLocaleString();

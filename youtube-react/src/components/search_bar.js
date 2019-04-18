@@ -9,10 +9,10 @@ class SearchBar extends Component {
             <InputBase
                 placeholder="Search…"
                 onChange={this.handleChange}
-                classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-                }}
+                // classes={{
+                //     root: classes.inputRoot,
+                //     input: classes.inputInput,
+                // }}
             />
         )
     }

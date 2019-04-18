@@ -14,6 +14,35 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid';
+import {
+    FacebookShareCount,
+    GooglePlusShareCount,
+    LinkedinShareCount,
+    PinterestShareCount,
+    VKShareCount,
+    OKShareCount,
+    RedditShareCount,
+    TumblrShareCount,
+} from 'react-share';
+import {
+    FacebookIcon,
+    TwitterIcon,
+    TelegramIcon,
+    WhatsappIcon,
+    GooglePlusIcon,
+    LinkedinIcon,
+    PinterestIcon,
+    VKIcon,
+    OKIcon,
+    RedditIcon,
+    TumblrIcon,
+    LivejournalIcon,
+    MailruIcon,
+    ViberIcon,
+    WorkplaceIcon,
+    LineIcon,
+    EmailIcon,
+  } from 'react-share';
 const styles = theme => ({
     root: {
         flexGrow: 1,
@@ -62,7 +91,7 @@ class VideoDetail extends Component {
             );
         }
         const videoId = video.id.videoId;
-        const url = `https://www.youtube.com/embed/${videoId}`;
+        const url = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
         return (
             <Card className={classes.card}>
                 <CardActionArea>

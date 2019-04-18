@@ -9,6 +9,8 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import red from '@material-ui/core/colors/red';
 import blue from '@material-ui/core/colors/blue';
 import SvgIcon from '@material-ui/core/SvgIcon';
+import Recent from './recent';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 const styles = {
     root: {
         width: '100%',
@@ -38,17 +40,22 @@ class Footer extends React.Component {
         const { value } = this.state;
 
         return (
-            <BottomNavigation
-                value={value}
-                onChange={this.handleChange}
-                showLabels
-                className={classes.root}
-            >
-                <BottomNavigationAction label="Home" color="secondary" icon={<HomeIcon />} />
-                <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-                <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-                <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
-            </BottomNavigation>
+            <Router>
+                <BottomNavigation
+                    value={value}
+                    onChange={this.handleChange}
+                    showLabels
+                    className={classes.root}
+                >
+                    <BottomNavigationAction label="Home" color="secondary" icon={<HomeIcon />} />
+                    <Link to="/recent">
+                        <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
+                    </Link>
+                    <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+                    <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+                   
+                </BottomNavigation>
+            </Router>
         );
     }
 }

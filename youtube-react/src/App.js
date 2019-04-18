@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Main from './components/main';
 import Footer from './components/footer';
+import Recent from './components/recent';
 
 class App extends Component {
     constructor(props) {
@@ -10,6 +11,7 @@ class App extends Component {
 
         }
     }
+
     onSearchTerm = (data) => {
         console.log(data);
     }
@@ -17,8 +19,13 @@ class App extends Component {
     render() {
         return (
             <div>
-                <Main onSearchTerm={this.onSearchTerm} />
-                <Footer/>
+                
+                    <Main onSearchTerm={this.onSearchTerm} />
+                    <Footer/>
+                    {/* <UserRoute location={location}
+                                path={`/recent`}
+                                exact
+                                component={recent}/> */}
             </div>
         );
     }
