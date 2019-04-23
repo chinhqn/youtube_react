@@ -26,6 +26,10 @@ import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import Drawer from '@material-ui/core/Drawer';
 import classNames from 'classnames';
+import Avatar from '@material-ui/core/Avatar';
+import Grid from '@material-ui/core/Grid';
+
+
 const drawerWidth = 240;
 const styles = theme => ({
     root: {
@@ -308,12 +312,18 @@ class Header extends React.Component {
                             anchor="left"
                             open={open}
                             classes={{
-                                paper: classes.drawerPaper,
-                            }}
+                                    paper: classes.drawerPaper,
+                                }}
                             >
                         <div className={classes.drawerHeader}>
+                            <Grid container justify="center" alignItems="center">
+                                <Avatar src="/image/avatar/chin123.JPG" className={classes.avatar} /> 
+                            </Grid>
+                            <Grid container justify="center" alignItems="center">
+                                CHINH QN
+                            </Grid>
                             <IconButton onClick={this.handleDrawerClose}>
-                            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                                {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                             </IconButton>
                         </div>
                         <Divider />

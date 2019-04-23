@@ -20,16 +20,19 @@ const styles = theme => ({
         color: theme.palette.text.secondary,
     },
     
-    control: {
-        padding: theme.spacing.unit * 1,
-    },
-    demo: {
-        paddingTop: 10
-    },
+    // control: {
+    //     padding: theme.spacing.unit * 1,
+    // },
+    // demo: {
+    //     paddingTop: 10
+    // },
     content: {
         width: 'auto',
         margin: 0
     },
+    detail: {
+        marginTop: (theme.spacing.unit * 7)
+    }
     
 });
 class Main extends React.Component {
@@ -62,7 +65,7 @@ class Main extends React.Component {
             <div className={classes.root}>
                 <Header onSearchTermChange={(term) => this.videoSeach(term)} />
                 <Grid container spacing={24} className={classes.content}>
-                    <Grid item xs={12}>
+                    <Grid item  className={classes.detail}>
                         <VideoDetail video={selectVideo} />
                     </Grid>
                     <Grid item xs={12} sm={6}>

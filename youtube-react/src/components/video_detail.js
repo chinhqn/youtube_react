@@ -22,6 +22,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import classnames from 'classnames';
+
 const styles = theme => ({
     root: {
         flexGrow: 1,
@@ -43,11 +44,11 @@ const styles = theme => ({
         transform: 'rotate(0deg)',
         marginLeft: 'auto',
         transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shortest,
-    }),
+            duration: theme.transitions.duration.shortest,
+        }),
     },
     expandOpen: {
-    transform: 'rotate(180deg)',
+        transform: 'rotate(180deg)',
     },
 });
 class VideoDetail extends Component {
