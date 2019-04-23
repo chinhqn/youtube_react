@@ -11,6 +11,7 @@ import blue from '@material-ui/core/colors/blue';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import Recent from './recent';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 const styles = {
     root: {
         width: '100%',
@@ -48,12 +49,9 @@ class Footer extends React.Component {
                     className={classes.root}
                 >
                     <BottomNavigationAction label="Home" color="secondary" icon={<HomeIcon />} />
-                    <Link to="/recent">
-                        <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-                    </Link>
+                    <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
                     <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
                     <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
-                   
                 </BottomNavigation>
             </Router>
         );

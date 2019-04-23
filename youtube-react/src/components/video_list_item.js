@@ -33,7 +33,7 @@ class VideoListItem extends Component {
         // this.myRef.scrollTo(0, 0);
     }
     componentWillReceiveProps = () => {
-
+        
     }
     onVideoSelect = () => {
         this.props.onVideoSelectChange(this.state.video);
@@ -55,6 +55,7 @@ class VideoListItem extends Component {
         )
     }
 }
+
 VideoListItem.propTypes = {
     classes: PropTypes.object.isRequired,
 };

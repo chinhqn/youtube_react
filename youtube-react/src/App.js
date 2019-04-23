@@ -19,7 +19,7 @@ class App extends Component {
     render() {
         return (
             <div>
-                
+                    
                     <Main onSearchTerm={this.onSearchTerm} />
                     <Footer/>
                     {/* <UserRoute location={location}

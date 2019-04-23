@@ -11,38 +11,17 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
+import Collapse from '@material-ui/core/Collapse';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid';
-import {
-    FacebookShareCount,
-    GooglePlusShareCount,
-    LinkedinShareCount,
-    PinterestShareCount,
-    VKShareCount,
-    OKShareCount,
-    RedditShareCount,
-    TumblrShareCount,
-} from 'react-share';
-import {
-    FacebookIcon,
-    TwitterIcon,
-    TelegramIcon,
-    WhatsappIcon,
-    GooglePlusIcon,
-    LinkedinIcon,
-    PinterestIcon,
-    VKIcon,
-    OKIcon,
-    RedditIcon,
-    TumblrIcon,
-    LivejournalIcon,
-    MailruIcon,
-    ViberIcon,
-    WorkplaceIcon,
-    LineIcon,
-    EmailIcon,
-  } from 'react-share';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ShareIcon from '@material-ui/icons/Share';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import classnames from 'classnames';
 const styles = theme => ({
     root: {
         flexGrow: 1,
@@ -59,7 +38,17 @@ const styles = theme => ({
     },
     progress: {
         margin: theme.spacing.unit * 2,
-    }
+    },
+    expand: {
+        transform: 'rotate(0deg)',
+        marginLeft: 'auto',
+        transition: theme.transitions.create('transform', {
+        duration: theme.transitions.duration.shortest,
+    }),
+    },
+    expandOpen: {
+    transform: 'rotate(180deg)',
+    },
 });
 class VideoDetail extends Component {
     state = {
@@ -75,12 +64,12 @@ class VideoDetail extends Component {
     render() {
         const { classes } = this.props;
         const {video} = this.props;
+        console.log(video);
         if (!video) {
             return (
                 <Grid
                     container
                     spacing={0}
-                    align="center"
                     justify="center"
                     style={{ backgroundColor: '#263238' }}
                     >
@@ -105,14 +94,24 @@ class VideoDetail extends Component {
                         </Typography>
                     </CardContent>
                 </CardActionArea>
-                <CardActions>
-                    <Button size="small" color="primary">
-                    Share
-                    </Button>
-                    <Button size="small" color="primary">
-                    Learn More
-                    </Button>
-                </CardActions>
+                <CardActions className={classes.actions} disableActionSpacing>
+                    <IconButton aria-label="Add to favorites">
+                        <FavoriteIcon />
+                    </IconButton>
+                    <IconButton aria-label="Share">
+                        <ShareIcon />
+                    </IconButton>
+                    <IconButton
+                        className={classnames(classes.expand, {
+                        [classes.expandOpen]: this.state.expanded,
+                        })}
+                        onClick={this.handleExpandClick}
+                        aria-expanded={this.state.expanded}
+                        aria-label="Show more"
+                    >
+                        <ExpandMoreIcon />
+                    </IconButton>
+                    </CardActions>
             </Card>
         )
     }
